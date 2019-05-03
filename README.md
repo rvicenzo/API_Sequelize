@@ -1,4 +1,4 @@
-# TodoApp_API_NodeJS
+# API_Sequelize
 
 > Set your local database credentials in src/config/database.json<br />
 > npm i<br />
