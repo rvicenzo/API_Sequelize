@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs')
 const model = require('../models/index')
 
 const find = (req, res, next) => {
@@ -16,11 +17,13 @@ const find = (req, res, next) => {
 const create = (req, res, next) => {
     
     const { name, email, password } = req.body
+
+    let hashedPassword = bcrypt.hashSync(password, 8)
     
 	model.User.create({
 			name,
 			email,
-			password
+			password: hashedPassword
 		})
 		.then(response => res.status(201).json({
 			error: false,

@@ -11,8 +11,8 @@ server.use(bodyParser.json())
 server.use(cors)
 
 //Apply middleware
-server.use('/', middlewares.fn1)
-server.use('/api', middlewares.fn2)
+server.use('/api', middlewares.verifyToken)
+server.use('/auth/me', middlewares.me)
 
 server.listen(port, () => console.log(`Running on port: ${port}.`))
 

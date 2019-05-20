@@ -1,13 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const userController = require('../controllers/product')
+const productController = require('../controllers/product')
 const route = '/api/products'
 
 module.exports = (server) => {
-    router.get('/', userController.find)
-    router.post('/', userController.create)
-    router.put('/:id', userController.update)
-    router.delete('/:id', userController.remove)
+    router.get('/', productController.all)
+    router.get('/:id', productController.find)
+    router.post('/', productController.create)
+    router.put('/:id', productController.update)
+    router.delete('/:id', productController.remove)
 
     server.use(route, router)
 }

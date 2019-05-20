@@ -1,6 +1,6 @@
 const model = require('../models/index')
 
-const find = (req, res, next) => {
+const all = (req, res, next) => {
 	model.Product.findAll({})
 		.then(response => res.json({
 			error: false,
@@ -12,6 +12,21 @@ const find = (req, res, next) => {
 		}))
 }
 
+const find = (req, res, next) => {
+    const id = req.params.id
+
+	model.Product.findOne({
+            id            
+        })
+		.then(response => res.json({
+			error: false,
+			data: response
+		}))
+		.catch(error => res.json({
+			error,
+			data: []			
+		}))
+}
 
 const create = (req, res, next) => {
     
@@ -77,6 +92,7 @@ const remove = (req, res, next) => {
 }
 
 module.exports = { 
+    all,
     find,
     create,
     update,

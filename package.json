@@ -11,8 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^1.6.5",
     "pm2": "^2.1.5",
     "sequelize": "^5.8.1"
