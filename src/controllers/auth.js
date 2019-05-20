@@ -3,11 +3,34 @@ const bcrypt = require('bcryptjs')
 const authConfig = require('../config/auth')
 const model = require('../models/index')
 
+const register = (req, res, next) => {
+    const { name, email, password } = req.body
+
+    let hashedPassword = bcrypt.hashSync(password, 8)
+    
+	model.User.create({
+			name,
+			email,
+			password: hashedPassword
+		})
+		.then(response => res.status(201).json({
+			error: false,
+			data: response,
+			message: "Usuário criado com sucesso"
+		}))
+		.catch(error => res.json({
+			error,
+			data: []			
+		}))
+}
+
 const login = (req, res, next) => {    
-    const { email, password } = req.body
+    const { email, password } = req.query    
  
-    model.User.findOne({            
-            email            
+    model.User.findOne({ 
+            where: {
+                email
+            } 
         })
         .then(user => {
             if (!user) 
@@ -31,7 +54,9 @@ const login = (req, res, next) => {
         }))
 }
 
-const logout = (req, res, next) => {    
+const logout = (req, res, next) => {
+    req.userId = null
+        
     return res.status(200).send({ 
         auth: false, 
         token: null 
@@ -39,10 +64,12 @@ const logout = (req, res, next) => {
 }
 
 const me = (req, res, next) => {
-    const { id } = req.body
+    const { id } = req.params
     
     model.User.findOne({
-            id
+            where: {
+                id
+            }            
         })
         .then(user => {
             return res.json({
@@ -56,6 +83,7 @@ const me = (req, res, next) => {
 }
 
 module.exports = { 
+    register,
     login, 
     logout,
     me 

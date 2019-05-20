@@ -16,7 +16,9 @@ const find = (req, res, next) => {
     const id = req.params.id
 
 	model.Product.findOne({
-            id            
+            where: {
+                id
+            }            
         })
 		.then(response => res.json({
 			error: false,
