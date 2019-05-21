@@ -1,7 +1,7 @@
 const model = require('../models/index')
 
 const all = (req, res, next) => {
-	model.Product.findAll({})
+	model.product.findAll({})
 		.then(response => res.json({
 			error: false,
 			data: response
@@ -15,7 +15,7 @@ const all = (req, res, next) => {
 const find = (req, res, next) => {
     const id = req.params.id
 
-	model.Product.findOne({
+	model.product.findOne({
             where: {
                 id
             }            
@@ -34,7 +34,7 @@ const create = (req, res, next) => {
     
     const { title, description, price } = req.body
     
-	model.Product.create({
+	model.product.create({
 			title,
 			description,
 			price
@@ -55,7 +55,7 @@ const update = (req, res, next) => {
     const id = req.params.id
     const { title, description, price } = req.body
  
-    model.Product.update({            
+    model.product.update({            
             title,
             description,
             price
@@ -78,7 +78,7 @@ const remove = (req, res, next) => {
  
     const id = req.params.id
  
-    model.Product.destroy({
+    model.product.destroy({
             where: {
                 id
             }
