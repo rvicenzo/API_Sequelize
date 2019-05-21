@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const authConfig = require('./auth')
 
 const verifyToken = (req, res, next) => {
-    const token = req.headers['x-access-token'];
+    const token = req.headers['authorization']        
     if (!token)
         return res.status(403).send({ 
             auth: false, 
@@ -21,11 +21,11 @@ const verifyToken = (req, res, next) => {
     })    
 }
 
-const me = (req, res, next) => {        
-    /*if(req.userId !== req.params.id)
-        return res.status(404).send('You do not have permission.')*/
+/*const me = (req, res, next) => {        
+    if(req.userId !== req.params.id)
+        return res.status(404).send('You do not have permission.')
     
     next()
-}
+}*/
 
-module.exports = { verifyToken, me }
+module.exports = { verifyToken }

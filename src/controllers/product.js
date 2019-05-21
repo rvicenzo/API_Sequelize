@@ -2,7 +2,7 @@ const model = require('../models/index')
 
 const all = (req, res, next) => {
 	model.product.findAll({})
-		.then(response => res.json({
+		.then(response => res.status(200).json({
 			error: false,
 			data: response
 		}))
@@ -20,7 +20,7 @@ const find = (req, res, next) => {
                 id
             }            
         })
-		.then(response => res.json({
+		.then(response => res.status(200).json({
 			error: false,
 			data: response
 		}))
@@ -64,7 +64,7 @@ const update = (req, res, next) => {
                 id
             }
         })
-        .then(response => res.json({
+        .then(response => res.status(200).json({
             error: false,
             data: response,
             message: 'Produto atualizado com sucesso'
@@ -83,7 +83,7 @@ const remove = (req, res, next) => {
                 id
             }
         })
-        .then(response => res.json({
+        .then(response => res.status(200).json({
             error: false,
             data: response,
             message: 'Produto removido com sucesso'

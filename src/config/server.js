@@ -12,7 +12,6 @@ server.use(cors)
 
 //Apply middleware
 server.use('/api', middlewares.verifyToken)
-server.use('/auth/me', middlewares.me)
 
 server.listen(port, () => console.log(`Running on port: ${port}.`))
 
